@@ -1,10 +1,10 @@
-# 1. How many unique viewers did game of thrones and westworld garner in the past 7 days?
-# Identify metrics: 
-# - Unique users
-# - Day
-# - Name of show
+-- 1. How many unique viewers did game of thrones and westworld garner in the past 7 days?
+-- Identify metrics: 
+-- Unique users
+-- Day
+-- Name of show
 
-# build SQL query:
+-- build SQL query:
 SELECT COUNT(DISTINCT view.user.id) AS num_viewers,
   view.date,
   video.series__name
@@ -17,14 +17,14 @@ GROUP BY video.series_name
 
 
 
-# 2. What is the average completion rate for the first episode of every series?
-# Identify metrics: 
-# - name of show
-# - average time watched
-# - which episode
-# - which season
+-- 2. What is the average completion rate for the first episode of every series?
+-- Identify metrics: 
+-- name of show 
+-- average time watched
+-- which episode
+-- which season
 
-# build SQL query:
+-- build SQL query:
 SELECT video.series_name,
   AVG (view.seconds_watched * 1.0 / nullif(0, video.runtime_seconds)) AS comp_rate
 FROM fact_view view
@@ -34,7 +34,4 @@ WHERE video.episode_number = 1
   AND video.season_number = 1
 GROUP BY video.series_name
 
-
-
-# 3. What is the 2nd most watched episode per genre in terms of minutes watched?
   
